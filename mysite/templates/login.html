@@ -1,0 +1,51 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="UTF-8" />
+        <title>养老系统-登录注册界面</title>
+		 <link href="{%static 'login_css/style.css'%}" rel="stylesheet">
+		 <link href="{%static 'login_css/demo.css'%}" rel="stylesheet">
+
+		 <link href="{%static 'login_css/animate-custom.css'%}" rel="stylesheet">
+
+    </head>
+<body>
+
+ <div class="container">
+            <header>
+                <h1><span>养老系统</span></h1>
+            </header>
+            <section>
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                                <h1>登录</h1>
+{{ message }}
+                                <form action="" method="post">
+            {% csrf_token %}
+                                <p>
+                                    <label  class="uname" data-icon="u" >用户名</label>
+
+            <input id="username" name="username" type="text" autocomplete="off" placeholder="用户名"  onfocus="this.placeholder= ' '" onblur="this.placeholder='用户名'">
+
+                                </p>
+                                <p>
+                                    <label  class="youpasswd" data-icon="p">密码</label>
+
+            <input id="password" name="password" type="password" autocomplete="off" placeholder="登录密码" onfocus="this.placeholder= ' '" onblur="this.placeholder='登陆密码'">
+
+<p>
+            <button id="submit" style="position: center">登 录</button>
+                                </form>
+</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+</body>
+</html>

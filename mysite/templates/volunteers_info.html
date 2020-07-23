@@ -1,0 +1,117 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">义工信息管理</li>
+							<li class="active">查看/管理义工信息</li>
+                        </ol>
+ {% endblock %}
+{% block content %}
+          
+			
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+
+					<div class="page-title">
+                        <span class="title">义工信息列表</span>
+                    </div>
+
+                <div align="right">
+<a href="volunteer_analyze"><button>统计分析</button></a></div>
+					<div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+
+                                <div class="search d5">
+	                                <form>
+	                                  <input type="text" placeholder="请输入关键字" id="key" onkeydown="onSearch(this)">
+                                    </form>
+
+             <script type="text/javascript">
+                                    function onSearch(obj){//js函数开始
+                                        setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取
+                                            var storeId = document.getElementById('HTlist2');//获取table的id标识
+                                            var rowsLength = storeId.rows.length;//表格总共有多少行
+                                            var key = obj.value;//获取输入框的值
+                                            //var searchCol = 2;//要搜索的哪一列，这里是第一列，从0开始数起
+
+                                            for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）
+                                                var searchText = storeId.rows[i].innerHTML;//取得table行，列的值
+                                                if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，
+                                                storeId.rows[i].style.display='';//显示行操作，
+                                                }
+                                                else{
+                                                        storeId.rows[i].style.display='none';//隐藏行操作
+                                                }
+                                            }
+                                        },200);//200为延时时间
+                                    }
+                                    </script>
+                                </div>
+
+							    <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">义工信息列表</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="datatable table table-striped" cellspacing="0" width="100%" id="HTlist2">
+                                        <thead>
+                                            <tr>
+                                                <th>编号</th>
+                                                <th>姓名</th>
+                                                <th>性别</th>
+                                                <th>身份证号</th>
+                                                <th>出生日期</th>
+                                                <th>电话</th>
+                                                <th>访问日期</th>
+                                                <th>离开日期</th>
+
+                                                <th>人脸数据</th>
+                                                <th>查看</th>
+                                                <th>修改</th>
+                                                <th>删除</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                              {% for i in volunteers %}
+                                                <tr>
+                                                <td>{{ i.id }}</td>
+                                                <td>{{ i.name}}</td>
+                                                <td>{{ i.gender }}</td>
+                                                <td>{{ i.id_card }}</td>
+                                                <td>{{ i.birthday | date:'Y-m-d' }}</td>
+                                                <td>{{ i.phone }}</td>
+                                                <td>{{ i.checkin_date | date:'Y-m-d' }}</td>
+                                                <td>{{ i.checkout_date | date:'Y-m-d' }}</td>
+
+                <td>
+                    {% if i.imgset_dir == None or i.imgset_dir == ''%}
+                        <a href="facecollect?id={{ i.id }}&type=3"><button>收集人脸数据</button></a>
+
+                    {% else %}
+                         {{ i.imgset_dir }}
+                    {% endif %}
+                </td>
+                                                <td><a href="volunteer_detail?id={{ i.id }}"><button>查看</button></a></td>
+                                                <td><a href="volunteer_update?id={{ i.id }}"><button>修改</button></a></td>
+                                                <td><a href="volunteer_delete?id={{ i.id }}"><button>删除</button></a></td>
+                                                </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+       
+{% endblock %}

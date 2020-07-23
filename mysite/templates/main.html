@@ -1,0 +1,59 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">首页</li>
+                        </ol>
+{% endblock %}
+{% block content %}
+            <!-- Main Content -->
+<div class="container-fluid">
+                <div class="side-body">
+
+					<div class="page-title">
+                        <span class="title">主页</span>
+                    </div>
+
+					<div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+
+							    <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">老人院概况</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body"  width="40%">
+                                      <table class="datatable table table-striped" cellspacing="0" width="40%"  id="HTlist2">
+                                        <thead>
+                                            <tr>
+                                                <th><h3>住院老人数</h3></th>
+
+                                                <th><h3>工作人员数</h3></th>
+                                                <th><h3>累计义工数</h3></th>
+                                            </tr>
+                                        </thead>
+<tbody>
+
+                                            <tr>
+
+                                                <th style="color: dodgerblue"><h3>{{ old_count }}</h3></th>
+                                                <th style="color: dodgerblue"><h3>{{ employee_count }}</h3></th>
+                                                <th style="color: dodgerblue"><h3>{{ volunteer_count }}</h3></th>
+                                        </tr>
+</tbody>
+
+
+                                    </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+{%  endblock %}

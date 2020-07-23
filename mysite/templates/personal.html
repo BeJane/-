@@ -1,0 +1,60 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+
+                  <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">个人信息</li>
+							<li class="active">维护个人信息</li>
+                        </ol>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">个人信息</span>
+                    </div>
+                            <div class="card">
+                                <h6 style="color: red">{{ message }}</h6>
+
+                                        <form  enctype="multipart/form-data" action="personal" method = "post" data-ajax="false" >
+                                                    {%  csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">用户名</label>
+                                            <input name="username"type="text" value="{{ user.username }}" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">真实姓名</label>
+                                            <input name="name" type="text" value="{{ user.real_name }}">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">邮箱</label>
+                                            <input name="email" type="text" value="{{ user.email}}">
+
+                                        </div>
+                                                                                    <div class="form-group">
+                                            <label class="col-sm-2 control-label">电话</label>
+                                            <input name="phone" type="text" value="{{ user.phone }}">
+
+                                        </div>
+                                                                                    <div class="form-group">
+                                            <label class="col-sm-2 control-label">手机</label>
+                                            <input name="mobile" type="text" value="{{ user.mobile }}">
+
+                                        </div>
+                                                 <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                              <button style="height:40px;width: 100px" id="submit">确 定</button>
+                                            </div>
+                                               </div>
+                                        </form>
+
+                                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+{% endblock %}

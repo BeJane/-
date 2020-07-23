@@ -1,0 +1,241 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+
+       <ol class="breadcrumb navbar-breadcrumb">
+           <li class="active"><a href="olds_info">查看/管理工作人员信息</a></li>
+														<li class="active">工作人员信息统计图</li>
+                        </ol>
+{% endblock %}
+{% block content %}
+
+
+ <!-- Main Content -->
+		<div class="container-fluid">
+                <div class="side-body">
+
+					<div class="page-title">
+                        <span class="title">工作人员信息统计图</span>
+                    </div>
+
+					<div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+
+
+							    <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">工作人员年龄统计图</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <canvas id="a_canvas" width="800" height="500"></canvas>
+									<script>
+										(function (){
+
+											window.addEventListener("load", function(){
+
+												//获取老人信息
+											  var data = {{ age | safe }};
+											  var xinforma = ['30岁以下','30岁-40岁','40岁-50岁','50岁以上'];
+
+											  // 获取上下文
+											  var a_canvas = document.getElementById('a_canvas');
+											  var context = a_canvas.getContext("2d");
+											  context.font = "20pt Calibri";
+
+
+											  // 绘制背景
+											  var gradient = context.createLinearGradient(0,0,0,300);
+
+
+											  context.fillStyle = gradient;
+
+											  context.fillRect(0,0,a_canvas.width,a_canvas.height);
+
+											  var realheight = a_canvas.height-50;
+											  var realwidth = a_canvas.width-60;
+											  // 描绘边框
+											  var grid_cols = data.length + 1;
+											  var grid_rows = 4;
+											  var cell_height = realheight / grid_rows;
+											  var cell_width = realwidth / grid_cols;
+											  context.lineWidth = 1;
+											  context.strokeStyle = "#a0a0a0";
+
+											  // 结束边框描绘
+											  context.beginPath();
+											  // 准备画横线
+											  /*for(var row = 1; row <= grid_rows; row++){
+												var y = row * cell_height;
+												context.moveTo(0,y);
+												context.lineTo(a_canvas.width, y);
+											  }*/
+
+												//划横线
+												context.moveTo(0,realheight);
+												context.lineTo(realwidth,realheight);
+
+
+												//画竖线
+											  context.moveTo(0,20);
+											   context.lineTo(0,realheight);
+											  context.lineWidth = 3;
+											  context.strokeStyle = "black";
+											  context.stroke();
+
+
+											  var max_v =0;
+
+											  for(var i = 0; i<data.length; i++){
+												if (data[i] > max_v) { max_v =data[i]};
+											  }
+											  max_v = max_v * 1.1;
+											  // 将数据换算为坐标
+											  var points = [];
+											  for( var i=0; i < data.length; i++){
+												var v= data[i];
+												var px = cell_width *　(i +1);
+												var py = realheight - realheight*(v / max_v);
+												//alert(py);
+												points.push({"x":px,"y":py});
+											  }
+
+											  //绘制坐标图形
+											  for(var i in points){
+												var p = points[i];
+												context.beginPath();
+												context.fillStyle="#7FFFD4";
+												context.fillRect(p.x,p.y,50,realheight-p.y);
+
+												context.fill();
+											  }
+											  //添加文字
+											  for(var i in points)
+											  {  var p = points[i];
+												context.beginPath();
+												context.fillStyle="black";
+												context.fillText(data[i], p.x + 15, p.y - 15);
+												context.fillText(xinforma[i],p.x - 50,realheight+30);
+												context.fillText('年龄',realwidth,realheight+12);
+												context.fillText('人数',0,50);
+
+												  }
+											},false);
+										  })();
+
+									</script>
+                                </div>
+
+                               
+
+							    <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">工作人员性别统计图</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <canvas id="gender_canvas" width="800" height="500"></canvas>
+									<script>
+										(function (){
+
+											window.addEventListener("load", function(){
+
+												//获取老人信息
+											  var data = {{ gender | safe }};
+											  var xinforma = ['男','女'];
+
+											  // 获取上下文
+											  var gender_canvas = document.getElementById('gender_canvas');
+											  var context = gender_canvas.getContext("2d");
+											  context.font = "20pt Calibri";
+
+
+											  // 绘制背景
+											  var gradient = context.createLinearGradient(0,0,0,300);
+
+
+											  context.fillStyle = gradient;
+
+											  context.fillRect(0,0,gender_canvas.width,gender_canvas.height);
+
+											  var realheight = gender_canvas.height-50;
+											  var realwidth = gender_canvas.width-60;
+											  // 描绘边框
+											  var grid_cols = data.length + 1;
+											  var grid_rows = 4;
+											  var cell_height = realheight / grid_rows;
+											  var cell_width = realwidth / grid_cols;
+											  context.lineWidth = 1;
+											  context.strokeStyle = "#a0a0a0";
+
+											  // 结束边框描绘
+											  context.beginPath();
+
+												//划横线
+												context.moveTo(0,realheight);
+												context.lineTo(realwidth,realheight);
+
+
+												//画竖线
+											  context.moveTo(0,20);
+											   context.lineTo(0,realheight);
+											  context.lineWidth = 3;
+											  context.strokeStyle = "black";
+											  context.stroke();
+
+
+											  var max_v =0;
+
+											  for(var i = 0; i<data.length; i++){
+												if (data[i] > max_v) { max_v =data[i]};
+											  }
+											  max_v = max_v * 1.1;
+											  // 将数据换算为坐标
+											  var points = [];
+											  for( var i=0; i < data.length; i++){
+												var v= data[i];
+												var px = cell_width *　(i +1);
+												var py = realheight - realheight*(v / max_v);
+												//alert(py);
+												points.push({"x":px,"y":py});
+											  }
+
+											  //绘制坐标图形
+											  for(var i in points){
+												var p = points[i];
+												context.beginPath();
+												context.fillStyle="#7FFFD4";
+												context.fillRect(p.x,p.y,50,realheight-p.y);
+
+												context.fill();
+											  }
+											  //添加文字
+											  for(var i in points)
+											  {  var p = points[i];
+												context.beginPath();
+												context.fillStyle="black";
+												context.fillText(data[i], p.x + 15, p.y - 15);
+												context.fillText(xinforma[i],p.x - 50,realheight+30);
+												context.fillText('年龄',realwidth,realheight+12);
+												context.fillText('人数',0,50);
+
+												  }
+											},false);
+										  })();
+
+									</script>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">工作人员信息管理</li>
+							<li class="active">新增工作人员信息</li>
+                        </ol>
+ {% endblock %}
+{% block content %}
+
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">新增工作人员信息</span>
+                    </div>
+                            <div class="card">
+                                        <form  enctype="multipart/form-data" action="add_employee" method = "post" data-ajax="false" >
+                                                    {%  csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">姓名</label>
+                                                <input name="name" type="text" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">性别</label>
+                                                <input name="sex" type="text" >
+                                        </div>
+	                                    <div class="form-group">
+                                            <label class="col-sm-2 control-label">头像</label>
+                                                <input  type="file" name="f">
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">身份证号</label>
+                                                <input name="id" type="text" >
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">出生日期</label>
+                                                <input name="birth" type="text" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">入职日期</label>
+                                                <input name="hiredate" type="text" >
+                                        </div>
+                                         
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">电话</label>
+                                                <input name="phone" type="text" >
+                                        </div>
+
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">备注</label>
+                                                <input name="bz" type="text" >
+
+                                        </div>
+										<!--监听错误信息-->
+
+                                            {{ message }}
+                                               <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                              <button style="height:40px;width: 100px" id="submit">提 交</button>
+                                            </div>
+                                               </div>
+                                        </form>
+                </nav>
+
+            </div>
+
+        </div>
+            </div>
+
+   <script type="text/javascript">
+        $(function () {
+            $(":button").click(function () {
+                if ($("#file1").val().length > 0) {
+                    ajaxFileUpload();
+                }
+                else {
+                    alert("请选择图片");
+                }
+            })
+        })
+        function ajaxFileUpload() {
+            $.ajaxFileUpload
+            (
+                {
+                    url: 'add_old', //用于文件上传的服务器端请求地址
+                    secureuri: false, //一般设置为false
+                    fileElementId: 'file1', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                    dataType: 'HTML', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        alert(data);
+                        $("#img1").attr("src", data);
+                        if (typeof (data.error) != 'undefined') {
+                            if (data.error != '') {
+                                alert(data.error);
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+        }
+    </script>
+{% endblock %}

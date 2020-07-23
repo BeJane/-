@@ -1,0 +1,117 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">老人信息管理</li>
+							<li class="active">查看/管理老人信息</li>
+                        </ol>
+ {% endblock %}
+{% block content %}
+
+			
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+
+					<div class="page-title">
+                        <span class="title">老人详细信息</span>
+                    </div>
+
+<style>
+	td{
+		width: 80px;
+        height: 50px;
+	}
+</style>
+<table border="1"   align="center" cellspacing="0">
+		<tr align="center">
+			<td bgcolor="#ededed">姓名</td>
+			<td>{{ old.username }}</td>
+
+			<td bgcolor="#ededed">编号</td>
+			<td>{{ old.id }}</td>
+			<td bgcolor="#ededed">性别</td>
+			<td>{{ old.gender }}</td>
+			<td colspan="2" rowspan="3"><img src="{%  static old.profile_photo %}" width="150px" height="210px"> </td>
+		</tr>
+		<tr align="center">
+			<td bgcolor="#ededed">出生日期</td>
+			<td>{{ old.birthday | date:'Y-m-d' }}</td>
+			<td bgcolor="#ededed">健康状态</td>
+			<td >{{ old.health_state }}</td>
+			<td bgcolor="#ededed">电话</td>
+			<td >{{ old.phone }}</td>
+		</tr>
+
+		<tr align="center">
+
+			<td bgcolor="#ededed">身份证号</td>
+			<td colspan="3">{{ old.id_card }}</td>
+			<td bgcolor="#ededed">房间号</td>
+			<td >{{ old.room_number }}</td>
+		</tr>
+		<tr align="center">
+			<td bgcolor="#ededed">入院日期</td>
+			<td colspan="3">{{ old.checkin_date | date:'Y-m-d' }}</td>
+			<td bgcolor="#ededed">出院日期</td>
+			<td colspan="2">{{ old.checkout_date | date:'Y-m-d' }}</td>
+		</tr>
+		<tr align="center">
+			<td bgcolor="#ededed" rowspan="2">第一监护人</td>
+			<td bgcolor="#ededed">姓名</td>
+			<td colspan="2">{{ old.firstguardian_name }}</td>
+
+			<td bgcolor="#ededed">与老人关系</td>
+            <td colspan="2">{{ old.firstguardian_relationship }}</td>
+        </tr>
+		<tr align="center">
+			<td bgcolor="#ededed">电话</td>
+            <td colspan="2">{{ old.firstguardian_phone }}</td>
+			<td bgcolor="#ededed">微信</td>
+            <td colspan="2">{{ old.firstguardian_wechat }}</td>
+        </tr>
+
+<tr align="center">
+			<td bgcolor="#ededed" rowspan="2">第二监护人</td>
+			<td bgcolor="#ededed">姓名</td>
+			<td colspan="2">{{ old.secondguardian_name}}</td>
+
+			<td bgcolor="#ededed">与老人关系</td>
+            <td colspan="2">{{ old.secondguardian_relationship }}</td>
+        </tr>
+		<tr align="center">
+			<td bgcolor="#ededed">电话</td>
+            <td colspan="2">{{ old.secondguardian_phone }}</td>
+			<td bgcolor="#ededed">微信</td>
+            <td colspan="2">{{ old.secondguardian_wechat }}</td>
+        </tr>
+  <tr align="center">
+
+			<td bgcolor="#ededed">创建时间</td>
+            <td colspan="3">{{ old.created | date:"Y-m-d"}}</td>
+
+			<td bgcolor="#ededed">创建人</td>
+            <td colspan="2">{{ old.createby}}</td>
+    </tr>
+  <tr align="center">
+
+			<td bgcolor="#ededed">修改时间</td>
+            <td colspan="3">{{ old.updated | date:"Y-m-d"}}</td>
+
+			<td bgcolor="#ededed">修改人</td>
+            <td colspan="2">{{ old.updateby}}</td>
+    </tr>
+    <tr align="center">
+
+			<td bgcolor="#ededed">备注</td>
+            <td colspan="7">{{ old.description}}</td>
+    </tr>
+
+	</table>
+                    <!-- 原文链接：https://blog.csdn.net/qq_42720683/article/details/81293741-->
+                </div>
+            </div>
+
+        </div>
+
+{% endblock %}

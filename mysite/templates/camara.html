@@ -1,0 +1,54 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block title %}
+
+       <ol class="breadcrumb navbar-breadcrumb">
+           <li class="active"><a href="olds_info">摄像头管理管理</a></li>
+							<li class="active">查看监控画面</li>
+                        </ol>
+{% endblock %}
+{% block content %}
+
+    <!-- <meta http-equiv="refresh" content="1">刷新间隔-->
+
+
+<div class="container-fluid" style="float: left;width: 20%;height: 800px;margin: 30px">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">摄像头控制台</span>
+                    </div>
+                     <div class="card" >
+                                <h6 style="color: red">{{ message }}</h6>
+  <div style="margin: 20px">
+<a href="open?cid=0"><button style="height: 50px;width: 200px;">开启房间摄像头</button></a></div>
+                <div style="margin: 20px">
+
+<a href="open?cid=1"><button style="height: 50px;width: 200px;">开启走廊摄像头</button></a></div>
+                <div style="margin: 20px">
+<a href="open?cid=2"><button style="height: 50px;width: 200px;">开启院子摄像头</button></a></div>
+                <div style="margin: 20px">
+<a href="open?cid=3"><button style="height: 50px;width: 200px;">开启桌子摄像头</button></a></div>
+                <div style="margin: 20px">
+
+<a href="close"><button style="height: 50px;width: 200px;">关闭摄像头</button></a></div>
+
+            </div>
+
+        </div>
+</div>
+    <div class="container-fluid" style="float: left;margin: 30px;width: 60%;height: 800px">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">监控画面</span>
+                    </div>
+                     <div class="card">
+                                <h6 style="color: red">{{ message }}</h6>
+
+                                <img src="video_viewer"width="640" height="480">
+
+
+          </div>
+                </div>
+    </div>
+{% endblock %}

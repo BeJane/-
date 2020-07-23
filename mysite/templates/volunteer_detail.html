@@ -1,0 +1,88 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">义工信息管理</li>
+							<li class="active">查看/管理义工信息</li>
+                        </ol>
+ {% endblock %}
+{% block content %}
+
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+		    <div class="page-title">
+                        <span class="title">义工详细信息</span>
+                    </div>
+
+			<style>
+				td{
+					width: 80px;
+					height: 50px;
+				}
+			</style>
+		<table border="1"   align="center" cellspacing="0">
+		<tr align="center">
+			<td bgcolor="#ededed">姓名</td>
+			<td>{{ volunteer.name }}</td>
+
+			<td bgcolor="#ededed">编号</td>
+			<td>{{ volunteer.id }}</td>
+			<td bgcolor="#ededed">性别</td>
+			<td>{{ volunteer.gender }}</td>
+			<td colspan="2" rowspan="3"><img src="{%  static volunteer.profile_photo %}" width="150px" height="210px"> </td>
+		</tr>
+		<tr align="center">
+			<td bgcolor="#ededed">出生日期</td>
+			<td colspan="2">{{ volunteer.birthday | date:'Y-m-d' }}</td>
+			
+			<td bgcolor="#ededed">电话</td>
+			<td colspan="2">{{ volunteer.phone }}</td>
+		</tr>
+
+		<tr align="center">
+
+			<td bgcolor="#ededed">身份证号</td>
+			<td colspan="5">{{ volunteer.id_card }}</td>
+			
+		</tr>
+		<tr align="center">
+			<td bgcolor="#ededed">访问日期</td>
+			<td colspan="3">{{ volunteer.checkin_date | date:'Y-m-d' }}</td>
+			<td bgcolor="#ededed">离开日期</td>
+			<td colspan="2">{{ volunteer.checkout_date | date:'Y-m-d' }}</td>
+		</tr>
+		
+		
+			
+  <tr align="center">
+
+			<td bgcolor="#ededed">创建时间</td>
+            <td colspan="3">{{ volunteer.created | date:"Y-m-d"}}</td>
+
+			<td bgcolor="#ededed">创建人</td>
+            <td colspan="2">{{ volunteer.createby}}</td>
+    </tr>
+  <tr align="center">
+
+			<td bgcolor="#ededed">修改时间</td>
+            <td colspan="3">{{ volunteer.updated | date:"Y-m-d"}}</td>
+
+			<td bgcolor="#ededed">修改人</td>
+            <td colspan="2">{{ volunteer.updateby}}</td>
+    </tr>
+    <tr align="center">
+
+			<td bgcolor="#ededed">备注</td>
+            <td colspan="7">{{ employee.description}}</td>
+    </tr>
+
+	</table>
+                    <!-- 原文链接：https://blog.csdn.net/qq_42720683/article/details/81293741-->
+                </div>
+            </div>
+
+
+        </div>
+      
+{% endblock %}

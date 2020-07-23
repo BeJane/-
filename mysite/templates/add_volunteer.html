@@ -1,0 +1,72 @@
+
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">义工信息管理</li>
+							<li class="active">新增义工信息</li>
+                        </ol>
+ {% endblock %}
+{% block content %}
+
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">新增义工信息</span>
+                    </div>
+                            <div class="card">
+                                        <form  enctype="multipart/form-data" action="add_volunteer" method = "post" data-ajax="false" >
+                                                    {%  csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">姓名</label>
+                                                <input name="name" type="text" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">性别</label>
+                                                <input name="sex" type="text" >
+                                        </div>
+	                                    <div class="form-group">
+                                            <label class="col-sm-2 control-label">头像</label>
+                                                <input  type="file" name="f">
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">身份证号</label>
+                                                <input name="id" type="text" >
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">出生日期</label>
+                                                <input name="birth" type="text" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">访问日期</label>
+                                                <input name="indate" type="text" >
+                                        </div>
+                                         
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">电话</label>
+                                                <input name="phone" type="text" >
+                                        </div>
+
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">备注</label>
+                                                <input name="bz" type="text" >
+
+                                        </div>
+										<!--监听错误信息-->
+
+                                            {{ message }}
+                                               <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                              <button style="height:40px;width: 100px" id="submit">提 交</button>
+                                            </div>
+                                               </div>
+                                        </form>
+
+
+            </div>
+                </div>
+            </div>
+
+{% endblock %}
