@@ -1,0 +1,21 @@
+{%  load static %}
+* { margin: 0; padding: 0; }
+        html { height: 100%; }
+        body { height: 100%;  background-size: cover;background-color: #e4e4e4;background: #fff url(../img/back3.png) 50% 50%  ;}
+        .mainall{position: absolute;margin-left: 150px;}
+        /*.dowebok1{position: absolute;margin-left: 50px;margin-top: 20px;width: 400px;height: 500px;border:1px solid #ffffff;border-radius: 10px;}
+        .dowebok2{position: absolute;margin-left: 50px;margin-top: 300px;width: 400px;height: 500px;border:1px solid #ffffff;border-radius: 20px;}
+        /*.dowebok {position: relative; top: 100px; bottom: 800px; left: 100px; right: 200px; border: 1px solid #fff; border-radius: 20px; overflow: hidden;}
+
+/*.headertop {position: fixed; left: 0;top: 0; width:200px; height: 100px}
+
+         */
+table{
+ width:600px;
+ text-align:center;
+ }
+table tr th,td{
+ height:30px;
+ line-height:30px;
+ border:1px solid #ccc;
+ }

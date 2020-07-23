@@ -1,0 +1,6 @@
+{%  load static %}
+* { margin: 0; padding: 0; }
+        html { height: 100%; }
+        body { height: 100%; background: #fff ; background-size: cover;background: #fff url(../img/back7.png) 50% 50%  ;}
+        .pic{position: absolute;margin-left: 300px;margin-top: 150px}
+        .content{position: absolute;margin-left: 600px;margin-top: 100px}
